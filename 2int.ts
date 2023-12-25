@@ -267,15 +267,15 @@ console.log('bst :>> \n\n', JSON.stringify(bst, null, 2));
 console.log('5. 1***** Implement a function to check if a binary tree is a valid binary search tree');
 
 class TreeNodes {
-      value: number;
-      left: TreeNodes | null;
-      right: TreeNodes | null
+    value: number;
+    left: TreeNodes | null;
+    right: TreeNodes | null
 
-      constructor(value:number){
-       this.value = value;
-       this.left = null;
-       this.right = null
-      }
+    constructor(value: number) {
+        this.value = value;
+        this.left = null;
+        this.right = null
+    }
 }
 
 class BST {
@@ -285,19 +285,19 @@ class BST {
         this.root = null
     }
 
-    insert(value:number): void {
+    insert(value: number): void {
         this.root = this._insert(this.root, value)
     }
 
-    private _insert(root: TreeNodes | null, value:number): TreeNodes {
-        if(root === null) {
+    private _insert(root: TreeNodes | null, value: number): TreeNodes {
+        if (root === null) {
             return new TreeNodes(value)
         }
 
-        if(value < root.value) {
+        if (value < root.value) {
             root.left = this._insert(root.left, value)
         }
-        else if (value > root.value){
+        else if (value > root.value) {
             root.right = this._insert(root.right, value)
         }
         return root
@@ -307,12 +307,12 @@ class BST {
         return this._isValidBST(this.root, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)
     }
 
-    private _isValidBST(node: TreeNodes | null, min:number, max:number, ) {
-        if(node === null) {
+    private _isValidBST(node: TreeNodes | null, min: number, max: number,) {
+        if (node === null) {
             return true
         }
 
-        if(node.value <= min || node.value >= max) {
+        if (node.value <= min || node.value >= max) {
             return false
         }
         else {
@@ -334,7 +334,7 @@ binarySearchTree.insert(20);
 
 console.log('BST :>> ', JSON.stringify(binarySearchTree, null, 2));
 
-console.log('is valid BST ?\n\n\n ',binarySearchTree.isValidBST());
+console.log('is valid BST ?\n\n\n ', binarySearchTree.isValidBST());
 
 console.log('6. ******** Merge Intervals *******\n\n\n');
 
@@ -350,19 +350,19 @@ const mergeIntervals = (intervals: Interval[]): Interval[] => {
     }
 
     let mergedIntervals: Interval[] = [intervals[0]]
-    intervals.sort((a,b) => a.start - b.start);
+    intervals.sort((a, b) => a.start - b.start);
 
-    for(let i = 1; i < intervals.length; i++) {
+    for (let i = 1; i < intervals.length; i++) {
         let lastMergedInterval = mergedIntervals[mergedIntervals.length - 1]
 
         const currentInterval = intervals[i]
 
-         if(currentInterval.start <= lastMergedInterval.end) {
-             lastMergedInterval.end = Math.max(currentInterval.end, lastMergedInterval.end)
-         }
-         else {
-             mergedIntervals.push(currentInterval)
-         }
+        if (currentInterval.start <= lastMergedInterval.end) {
+            lastMergedInterval.end = Math.max(currentInterval.end, lastMergedInterval.end)
+        }
+        else {
+            mergedIntervals.push(currentInterval)
+        }
     }
 
     return mergedIntervals;
@@ -383,13 +383,13 @@ console.log('7. ****** Longest Substring Without Repeating Characters **** \n\n 
 
 const longString = (s: string): number => {
     // let end:number = 0;
-    let start:number = 0;
+    let start: number = 0;
     let mapStrinIndex: Record<string, number> = {}
     let maxLength = 0;
 
-    for(let end = 0; end < s.length; end++) {
+    for (let end = 0; end < s.length; end++) {
         const currenChar = s[end]
-        if(mapStrinIndex[currenChar] !== undefined && mapStrinIndex[currenChar] >= start) {
+        if (mapStrinIndex[currenChar] !== undefined && mapStrinIndex[currenChar] >= start) {
             start = mapStrinIndex[currenChar] + 1
         }
         mapStrinIndex[currenChar] = end
@@ -402,22 +402,22 @@ const longString = (s: string): number => {
 
 console.log('8. ********* Anagram Detection ******** ');
 
-const checkAnagram = (s1:string, s2:string): boolean => {
+const checkAnagram = (s1: string, s2: string): boolean => {
 
 
     let isAnagram = false;
     let sortedS1 = s1.split('').sort().join('')
     let sorteds2 = s2.split('').sort().join('')
 
-    if(s1.length !== s2.length) {
+    if (s1.length !== s2.length) {
         return false
     }
 
-    for (let i = 0 ; i < sortedS1.length ; i ++) {
-       if(sortedS1[i] !== sorteds2[i]) {
-           isAnagram = false
-       }
-       else isAnagram = true   
+    for (let i = 0; i < sortedS1.length; i++) {
+        if (sortedS1[i] !== sorteds2[i]) {
+            isAnagram = false
+        }
+        else isAnagram = true
     }
 
     return isAnagram
@@ -429,75 +429,75 @@ console.log('object :>> \n\n');
 
 console.log('9. ********Maximum Subarray Sum ******* \n\n');
 
- console.log('9.1 ***** Find different subarrays in an array ****** \n\n',);
+console.log('9.1 ***** Find different subarrays in an array ****** \n\n',);
 
- const finSubArrays = (arr: number[]): number[] => {
-     let subArrays: number[] = []
-     let sum: number = 0;
-     let maxSum: number = 0;
-     
-    for(let start = 0; start < arr.length; start ++) {
+const finSubArrays = (arr: number[]): number[] => {
+    let subArrays: number[] = []
+    let sum: number = 0;
+    let maxSum: number = 0;
 
-        for(let end = start; end < arr.length; end ++) {
-           const result: number[] = arr.slice(start, end + 1)
-           subArrays.push(result)
-           sum = result.reduce((acc, current) => acc + current, 0)
-           maxSum = Math.max(maxSum, sum)
+    for (let start = 0; start < arr.length; start++) {
+
+        for (let end = start; end < arr.length; end++) {
+            const result: number[] = arr.slice(start, end + 1)
+            subArrays.push(result)
+            sum = result.reduce((acc, current) => acc + current, 0)
+            maxSum = Math.max(maxSum, sum)
         }
     }
 
     return subArrays
- }
+}
 
- const array: number[] = [1,2,3]
- console.log('sub arrays :>> ', finSubArrays(array));
+const array: number[] = [1, 2, 3]
+console.log('sub arrays :>> ', finSubArrays(array));
 
- console.log('\n');
+console.log('\n');
 
- const findSubArraySum = (arr: number[]): number => {
-     let currentSum: number = arr[0] 
-     let maxSum: number = arr[0]
+const findSubArraySum = (arr: number[]): number => {
+    let currentSum: number = arr[0]
+    let maxSum: number = arr[0]
 
-     for(let i = 1; i< arr.length; i ++) {
-         currentSum = Math.max(arr[i], currentSum + arr[i])
-         maxSum = Math.max(maxSum, currentSum)
-     }
+    for (let i = 1; i < arr.length; i++) {
+        currentSum = Math.max(arr[i], currentSum + arr[i])
+        maxSum = Math.max(maxSum, currentSum)
+    }
 
-     return maxSum
- }
+    return maxSum
+}
 
- const myArray: number[] = [1, -2, 3, 10, -4, 7, 2, -5];
+const myArray: number[] = [1, -2, 3, 10, -4, 7, 2, -5];
 
- console.log('sub array sum ', findSubArraySum(myArray));
+console.log('sub array sum ', findSubArraySum(myArray));
 
- console.log('\n\n');
- console.log('10. ******* Implement a LRU Cache ******\n');
- console.log('11. ******* Topological Sorting ******** \n');
- console.log('12. ******* Serialize and Deserialize a Binary Tree\n');
- console.log('13. ******* *Calculate the Power of a Number *******\n');
+console.log('\n\n');
+console.log('10. ******* Implement a LRU Cache ******\n');
+console.log('11. ******* Topological Sorting ******** \n');
+console.log('12. ******* Serialize and Deserialize a Binary Tree\n');
+console.log('13. ******* *Calculate the Power of a Number *******\n');
 
- const powerFunction = (x: number, n:number): number => {
-    if(n === 0) {
+const powerFunction = (x: number, n: number): number => {
+    if (n === 0) {
         return 1.0
-     }
+    }
 
-     if(n > 0) {
-       const temp = powerFunction(x, Math.floor(n/2));
+    if (n > 0) {
+        const temp = powerFunction(x, Math.floor(n / 2));
 
-       if(n % 2 === 0) {
-           return temp * temp
-       }
-       else {
-           return x * temp * temp
-       }
-     }
-     else {
-         return 1.0/powerFunction(x, -n)
-     }
+        if (n % 2 === 0) {
+            return temp * temp
+        }
+        else {
+            return x * temp * temp
+        }
+    }
+    else {
+        return 1.0 / powerFunction(x, -n)
+    }
 
- }
+}
 
- // Example usage:
+// Example usage:
 const result1 = powerFunction(2.0, 10);
 console.log(result1); // Output: 1024.0
 
@@ -514,16 +514,16 @@ console.log('15. ******** Find the Median of Two Sorted Arrays ******\n');
 
 const finMedianTwoArrays = (arr1: number[], arr2: number[]): number => {
 
-    let mergedArray:number[] = [...arr1, ...arr2]
+    let mergedArray: number[] = [...arr1, ...arr2]
     mergedArray.sort((a, b) => a - b)
-    const maxLength:number = mergedArray.length;
-    let median:number = 0
+    const maxLength: number = mergedArray.length;
+    let median: number = 0
 
-    if( maxLength % 2 === 0){
-      const mid = maxLength/2
-      median = (mergedArray[mid -1] + mergedArray[mid])/2
+    if (maxLength % 2 === 0) {
+        const mid = maxLength / 2
+        median = (mergedArray[mid - 1] + mergedArray[mid]) / 2
     } else {
-        median = mergedArray[Math.floor(maxLength/2)] 
+        median = mergedArray[Math.floor(maxLength / 2)]
     }
 
     return median
@@ -533,3 +533,15 @@ console.log('median1 :>> ', finMedianTwoArrays([1, 3], [2]));
 console.log('median2 :>> ', finMedianTwoArrays([1, 2], [3, 4]));
 console.log('median2 :>> ', finMedianTwoArrays([0, 0], [0, 0]));
 console.log('\n\n');
+
+console.log('16. ******* Factoriel *********\n');
+
+const factoriel = (n: number): number => {
+    if (n === 0 || n === 1) {
+        return 1
+    } else {
+        return n * factoriel(n - 1)
+    }
+}
+
+console.log('factoriel :>> ', factoriel(5));

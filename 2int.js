@@ -404,3 +404,13 @@ console.log('median1 :>> ', finMedianTwoArrays([1, 3], [2]));
 console.log('median2 :>> ', finMedianTwoArrays([1, 2], [3, 4]));
 console.log('median2 :>> ', finMedianTwoArrays([0, 0], [0, 0]));
 console.log('\n\n');
+console.log('16. ******* Factoriel *********\n');
+var factoriel = function (n) {
+    if (n === 0 || n === 1) {
+        return 1;
+    }
+    else {
+        return n * factoriel(n - 1);
+    }
+};
+console.log('factoriel :>> ', factoriel(5));
