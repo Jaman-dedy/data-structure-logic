@@ -433,12 +433,16 @@ console.log('9. ********Maximum Subarray Sum ******* \n\n');
 
  const finSubArrays = (arr: number[]): number[] => {
      let subArrays: number[] = []
+     let sum: number = 0;
+     let maxSum: number = 0;
      
     for(let start = 0; start < arr.length; start ++) {
 
         for(let end = start; end < arr.length; end ++) {
            const result: number[] = arr.slice(start, end + 1)
            subArrays.push(result)
+           sum = result.reduce((acc, current) => acc + current, 0)
+           maxSum = Math.max(maxSum, sum)
         }
     }
 
@@ -447,3 +451,58 @@ console.log('9. ********Maximum Subarray Sum ******* \n\n');
 
  const array: number[] = [1,2,3]
  console.log('sub arrays :>> ', finSubArrays(array));
+
+ console.log('\n');
+
+ const findSubArraySum = (arr: number[]): number => {
+     let currentSum: number = arr[0] 
+     let maxSum: number = arr[0]
+
+     for(let i = 1; i< arr.length; i ++) {
+         currentSum = Math.max(arr[i], currentSum + arr[i])
+         maxSum = Math.max(maxSum, currentSum)
+     }
+
+     return maxSum
+ }
+
+ const myArray: number[] = [1, -2, 3, 10, -4, 7, 2, -5];
+
+ console.log('sub array sum ', findSubArraySum(myArray));
+
+ console.log('\n\n');
+ console.log('10. ******* Implement a LRU Cache ******\n');
+ console.log('11. ******* Topological Sorting ******** \n');
+ console.log('12. ******* Serialize and Deserialize a Binary Tree\n');
+ console.log('13. ******* *Calculate the Power of a Number *******\n');
+
+ const powerFunction = (x: number, n:number): number => {
+    if(n === 0) {
+        return 1.0
+     }
+
+     if(n > 0) {
+       const temp = powerFunction(x, Math.floor(n/2));
+
+       if(n % 2 === 0) {
+           return temp * temp
+       }
+       else {
+           return x * temp * temp
+       }
+     }
+     else {
+         return 1.0/powerFunction(x, -n)
+     }
+
+ }
+
+ // Example usage:
+const result1 = powerFunction(2.0, 10);
+console.log(result1); // Output: 1024.0
+
+const result2 = powerFunction(3.0, 5);
+console.log(result2); // Output: 243.0
+
+const result3 = powerFunction(2.5, -3);
+console.log(result3); // Output: 0.064

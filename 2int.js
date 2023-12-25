@@ -319,13 +319,58 @@ console.log('9. ********Maximum Subarray Sum ******* \n\n');
 console.log('9.1 ***** Find different subarrays in an array ****** \n\n');
 var finSubArrays = function (arr) {
     var subArrays = [];
+    var sum = 0;
+    var maxSum = 0;
     for (var start = 0; start < arr.length; start++) {
         for (var end = start; end < arr.length; end++) {
             var result_1 = arr.slice(start, end + 1);
             subArrays.push(result_1);
+            sum = result_1.reduce(function (acc, current) { return acc + current; }, 0);
+            maxSum = Math.max(maxSum, sum);
         }
     }
     return subArrays;
 };
 var array = [1, 2, 3];
 console.log('sub arrays :>> ', finSubArrays(array));
+console.log('\n');
+var findSubArraySum = function (arr) {
+    var currentSum = arr[0];
+    var maxSum = arr[0];
+    for (var i = 1; i < arr.length; i++) {
+        currentSum = Math.max(arr[i], currentSum + arr[i]);
+        maxSum = Math.max(maxSum, currentSum);
+    }
+    return maxSum;
+};
+var myArray = [1, -2, 3, 10, -4, 7, 2, -5];
+console.log('sub array sum ', findSubArraySum(myArray));
+console.log('\n\n');
+console.log('10. ******* Implement a LRU Cache ******\n');
+console.log('11. ******* Topological Sorting ******** \n');
+console.log('12. ******* Serialize and Deserialize a Binary Tree\n');
+console.log('13. ******* *Calculate the Power of a Number *******\n');
+var powerFunction = function (x, n) {
+    if (n === 0) {
+        return 1.0;
+    }
+    if (n > 0) {
+        var temp = powerFunction(x, Math.floor(n / 2));
+        if (n % 2 === 0) {
+            return temp * temp;
+        }
+        else {
+            return x * temp * temp;
+        }
+    }
+    else {
+        return 1.0 / powerFunction(x, -n);
+    }
+};
+// Example usage:
+var result1 = powerFunction(2.0, 10);
+console.log(result1); // Output: 1024.0
+var result2 = powerFunction(3.0, 5);
+console.log(result2); // Output: 243.0
+var result3 = powerFunction(2.5, -3);
+console.log(result3); // Output: 0.064
