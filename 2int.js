@@ -1,3 +1,12 @@
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 console.log('1. ***** Reversed Linked list ***** ');
 var ListNode = /** @class */ (function () {
     function ListNode(value) {
@@ -374,3 +383,24 @@ var result2 = powerFunction(3.0, 5);
 console.log(result2); // Output: 243.0
 var result3 = powerFunction(2.5, -3);
 console.log(result3); // Output: 0.064
+console.log('\n');
+console.log('14. ********Implement a Trie (Prefix Tree) ******\n');
+console.log('15. ******** Find the Median of Two Sorted Arrays ******\n');
+var finMedianTwoArrays = function (arr1, arr2) {
+    var mergedArray = __spreadArray(__spreadArray([], arr1, true), arr2, true);
+    mergedArray.sort(function (a, b) { return a - b; });
+    var maxLength = mergedArray.length;
+    var median = 0;
+    if (maxLength % 2 === 0) {
+        var mid = maxLength / 2;
+        median = (mergedArray[mid - 1] + mergedArray[mid]) / 2;
+    }
+    else {
+        median = mergedArray[Math.floor(maxLength / 2)];
+    }
+    return median;
+};
+console.log('median1 :>> ', finMedianTwoArrays([1, 3], [2]));
+console.log('median2 :>> ', finMedianTwoArrays([1, 2], [3, 4]));
+console.log('median2 :>> ', finMedianTwoArrays([0, 0], [0, 0]));
+console.log('\n\n');
